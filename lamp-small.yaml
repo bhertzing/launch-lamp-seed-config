@@ -286,7 +286,7 @@ resources:
         holland_mysql_password: {  get_attr: [database, holland_pass] }
         holland_mysql_host: { get_attr: [database, mysql_host] }
         holland_create_user: "no"
-        phpmyadmin_install: { get_param: php_myadmin }
+#        phpmyadmin_install: { get_param: php_myadmin }
         phpmyadmin_host: { get_attr: [database, mysql_host] }
         phpmyadmin_user: { get_param: db_user }
         phpmyadmin_pass: { get_attr: [database, mysql_password] }
@@ -433,7 +433,7 @@ resources:
               params:
                 stack: { get_param: "OS::stack_name" }
           master_server: { get_attr: [lamp_server, networks, private, 0] }
-          php_myadmin: { get_param: php_myadmin }
+#          php_myadmin: { get_param: php_myadmin }
           ansible_source: { get_param: ansible_source}
           cloud_network: { get_resource: cloud_network }
   #Cloud Load Balancer
