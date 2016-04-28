@@ -20,7 +20,7 @@ parameter_groups:
   - lamp_url
   - db_user
   - db_name
-#  - php_myadmin
+  - php_myadmin
 - label: rax-dev-params
   parameters:
   - server_image
@@ -62,12 +62,12 @@ parameters:
     - allowed_pattern: "^[a-zA-Z0-9.-]{1,255}$"
       description: Must only contain alphanumeric characters, '-', and '.'
     immutable: true
-#  php_myadmin:
-#    type: boolean
-#    default: false
-#    label: PHPMyAdmin
-#    description: Enable or disable PHPMyAdmin
-#    immutable: true
+  php_myadmin:
+    type: boolean
+    default: false
+    label: PHPMyAdmin
+    description: Enable or disable PHPMyAdmin
+    immutable: true
   backup_email:
     type: string
     default: admin@example.com
