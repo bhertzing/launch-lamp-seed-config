@@ -65,7 +65,7 @@ parameters:
   php_myadmin:
     type: boolean
     default: false
-    label: PHPMyAdmin
+    label: PHPMyAdmin (Do not use. Pending fix.)
     description: Enable or disable PHPMyAdmin
     immutable: true
   backup_email:
