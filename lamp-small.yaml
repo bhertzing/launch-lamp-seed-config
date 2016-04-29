@@ -65,7 +65,7 @@ parameters:
   php_myadmin:
     type: boolean
     default: false
-    label: PHPMyAdmin (Do not use. Pending fix.)
+    label: PHPMyAdmin
     description: Enable or disable PHPMyAdmin
     immutable: true
   backup_email:
@@ -283,13 +283,13 @@ resources:
         apache_default_domain: { get_param: lamp_url }
         tz: "America/Chicago"
         holland_mysql_user: "holland"
-        holland_mysql_password: {  get_attr: [database, holland_pass] }
-        holland_mysql_host: { get_attr: [database, mysql_host] }
+        holland_mysql_password: { list_join: [ '', { get_attr: [database, holland_pass] } ] }
+        holland_mysql_host: { list_join: [ '', { get_attr: [database, mysql_host] } ] }
         holland_create_user: "no"
         phpmyadmin_install: { get_param: php_myadmin }
-        phpmyadmin_host: { get_attr: [database, mysql_host] }
+        phpmyadmin_host: { list_join: [ '', { get_attr: [database, mysql_host] } ] }
         phpmyadmin_user: { get_param: db_user }
-        phpmyadmin_pass: { get_attr: [database, mysql_password] }
+        phpmyadmin_pass: { list_join: [ '', { get_attr: [database, mysql_password] } ] }
       config:
         get_resource: lamp_config
       server:
@@ -494,15 +494,13 @@ outputs:
     value: {get_param: db_name }
   mysql_password:
     description: Database Password
-    value:
-      get_attr: [database, mysql_password]
+    value: { list_join: [ '', { get_attr: [database, mysql_password] } ] }
   mysql_host:
     description: Database Host
-    value:
-      get_attr: [database, mysql_host]
+    value: { list_join: [ '', { get_attr: [database, mysql_host] } ] }
   root_pass:
     description: MySQL Root Password (if configured)
-    value: { get_attr: [database, root_pass] }
+    value: { list_join: [ '', { get_attr: [database, root_pass] } ] }
   ssh_private_key:
     description: SSH Private Key
     value:
